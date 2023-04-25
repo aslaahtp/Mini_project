@@ -11,7 +11,7 @@ Integration with social media platforms to promote products and reach a wider au
 Getting Started
 To get started with the Rural Reach App, follow these steps:
 
-Clone this repository using git clone <repository-url>
+Clone this repository using git clone https://github.com/aslaahtp/Mini_project
 Install Flutter on your local machine.
 Run flutter pub get to install dependencies.
 Run the app using flutter run.
