@@ -1,5 +1,4 @@
-# Mini_project
-Rural Reach App
+# Rural Reach App
 The Rural Reach App is a mobile application developed using the Flutter framework. The app aims to empower farmers and small household industries to sell their products directly to buyers without any intermediaries, thereby maximizing their profit margin.
 
 Features
