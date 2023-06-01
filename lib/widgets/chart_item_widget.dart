@@ -32,37 +32,13 @@ class _ChartItemWidgetState extends State<ChartItemWidget> {
       child: IntrinsicHeight(
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             imageWidget(),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                AppText(
-                  text: widget.item.name,
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
-                ),
-                SizedBox(
-                  height: 5,
-                ),
-                AppText(
-                    text: widget.item.description,
-                    fontSize: 14,
-                    fontWeight: FontWeight.bold,
-                    color: AppColors.darkGrey),
-                SizedBox(
-                  height: 12,
-                ),
-                Spacer(),
-                ItemCounterWidget(
-                  onAmountChanged: (newAmount) {
-                    setState(() {
-                      amount = newAmount;
-                    });
-                  },
-                )
-              ],
+            AppText(
+              text: widget.item.name,
+              fontSize: 16,
+              fontWeight: FontWeight.bold,
             ),
             Column(
               children: [
@@ -77,7 +53,7 @@ class _ChartItemWidgetState extends State<ChartItemWidget> {
                 Container(
                   width: 70,
                   child: AppText(
-                    text: "\$${getPrice().toStringAsFixed(2)}",
+                    text: "\Rs.${getPrice().toStringAsFixed(1)}",
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
                     textAlign: TextAlign.right,
