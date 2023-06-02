@@ -4,7 +4,7 @@ import 'package:grocery_app/helpers/column_with_seprator.dart';
 import 'package:grocery_app/models/grocery_item.dart';
 import 'package:grocery_app/widgets/chart_item_widget.dart';
 
-// import 'checkout_bottom_sheet.dart';
+import 'checkout_bottom_sheet.dart';
 
 class CartScreen extends StatelessWidget {
   @override
@@ -30,7 +30,7 @@ class CartScreen extends StatelessWidget {
                   widgets: demoItems.map((e) {
                     return Container(
                       padding: EdgeInsets.symmetric(
-                        horizontal: 10,
+                        horizontal: 25,
                       ),
                       width: double.maxFinite,
                       child: ChartItemWidget(
@@ -68,8 +68,7 @@ class CartScreen extends StatelessWidget {
         padding: EdgeInsets.symmetric(vertical: 30),
         trailingWidget: getButtonPriceWidget(),
         onPressed: () {
-          // showBottomSheet(context);
-          print("CARTyes");
+          showBottomSheet(context);
         },
       ),
     );
@@ -85,13 +84,13 @@ class CartScreen extends StatelessWidget {
     );
   }
 
-  // void showBottomSheet(context) {
-  //   showModalBottomSheet(
-  //       context: context,
-  //       isScrollControlled: true,
-  //       backgroundColor: Colors.transparent,
-  //       builder: (BuildContext bc) {
-  //         return CheckoutBottomSheet();
-  //       });
-  // }
+  void showBottomSheet(context) {
+    showModalBottomSheet(
+        context: context,
+        isScrollControlled: true,
+        backgroundColor: Colors.transparent,
+        builder: (BuildContext bc) {
+          return CheckoutBottomSheet();
+        });
+  }
 }
