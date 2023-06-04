@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="default_web_client_id" translatable="false">554312651915-6sma9avuna2b1bgiudsdkhdmu7cels96.apps.googleusercontent.com</string>
+    <string name="gcm_defaultSenderId" translatable="false">554312651915</string>
+    <string name="google_api_key" translatable="false">AIzaSyD8D-JRBbrCfb3LlKhZWG4MJOZQGGOJeRI</string>
+    <string name="google_app_id" translatable="false">1:554312651915:android:0f55e839721678312d708e</string>
+    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyD8D-JRBbrCfb3LlKhZWG4MJOZQGGOJeRI</string>
+    <string name="google_storage_bucket" translatable="false">ruralreach-2be47.appspot.com</string>
+    <string name="project_id" translatable="false">ruralreach-2be47</string>
+</resources>

@@ -2,8 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:grocery_app/screens/sell/sellcard.dart';
 import 'package:grocery_app/screens/sell/sell.dart';
 //import 'package:image_picker/image_picker.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
-class Newitem extends StatelessWidget {
+class Newitem extends StatefulWidget {
+  const Newitem({Key? key}) : super(key: key);
+
+  @override
+  State<Newitem> createState() => _NewitemState();
+}
+
+class _NewitemState extends State<Newitem> {
+  final _firestore = FirebaseFirestore.instance;
+  late String item;
+  late String quantity;
+  late String price;
+  late String minbuy;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,7 +47,7 @@ class Newitem extends StatelessWidget {
                   child: Center(
                 child: Container(
                   width: 350,
-                  height: 380,
+                  height: 420,
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Card(
@@ -47,36 +60,129 @@ class Newitem extends StatelessWidget {
                           SizedBox(
                             height: 20,
                           ),
-                          Container(
+                          Padding(
+                            padding: EdgeInsets.all(8.0),
                             child: Row(
                               children: [
                                 Expanded(
                                     child: Center(
                                   child: Text(
-                                    "Item ",
+                                    "Item",
                                     style: TextStyle(
                                         fontSize: 20,
                                         fontWeight: FontWeight.bold),
                                   ),
                                 )),
-                                Expanded(
-                                  child: Container(),
-                                ),
                                 Expanded(child: Container()),
+                                Expanded(
+                                  child: TextField(
+                                    onChanged: (value) {
+                                      item = value;
+                                    },
+                                    keyboardType: TextInputType.name,
+                                    decoration: InputDecoration(
+                                      border: OutlineInputBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(20.0),
+                                      ),
+                                    ),
+                                  ),
+                                ),
                               ],
                             ),
                           ),
                           Padding(
                             padding: EdgeInsets.all(8.0),
-                            child: Line(word: "Quantity"),
+                            child: Row(
+                              children: [
+                                Expanded(
+                                    child: Center(
+                                  child: Text(
+                                    "Quantity",
+                                    style: TextStyle(
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                )),
+                                Expanded(child: Container()),
+                                Expanded(
+                                  child: TextField(
+                                    onChanged: (value) {
+                                      quantity = value;
+                                    },
+                                    keyboardType: TextInputType.number,
+                                    decoration: InputDecoration(
+                                      border: OutlineInputBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(20.0),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
                           Padding(
                             padding: EdgeInsets.all(8.0),
-                            child: Line(word: "Price"),
+                            child: Row(
+                              children: [
+                                Expanded(
+                                    child: Center(
+                                  child: Text(
+                                    "Price",
+                                    style: TextStyle(
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                )),
+                                Expanded(child: Container()),
+                                Expanded(
+                                  child: TextField(
+                                    onChanged: (value) {
+                                      price = value;
+                                    },
+                                    keyboardType: TextInputType.number,
+                                    decoration: InputDecoration(
+                                      border: OutlineInputBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(20.0),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
                           Padding(
                             padding: EdgeInsets.all(8.0),
-                            child: Line(word: "Min. Buy"),
+                            child: Row(
+                              children: [
+                                Expanded(
+                                    child: Center(
+                                  child: Text(
+                                    "Min.buy",
+                                    style: TextStyle(
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                )),
+                                Expanded(child: Container()),
+                                Expanded(
+                                  child: TextField(
+                                    onChanged: (value) {
+                                      minbuy = value;
+                                    },
+                                    keyboardType: TextInputType.number,
+                                    decoration: InputDecoration(
+                                      border: OutlineInputBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(20.0),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
                           Padding(
                             padding: EdgeInsets.all(8.0),
@@ -94,11 +200,17 @@ class Newitem extends StatelessWidget {
             ),
             Center(
               child: ElevatedButton(
-                onPressed: () {
-                  /*Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => AddProduct()),
-                  );*/
+                onPressed: () async {
+                  await _firestore.collection('addproduct').add({
+                    'Item': item,
+                    'Minbuy': int.parse(minbuy),
+                    'Price': double.parse(price),
+                    'Quantity': int.parse(quantity),
+                  });
+                  // print(item);
+                  // print(minbuy);
+                  // print(price);
+                  // print(quantity);
                   print("Confirm Button Pressed");
                   // Button action
                 },
@@ -120,36 +232,6 @@ class Newitem extends StatelessWidget {
           ],
         ),
       ),
-    );
-  }
-}
-
-class Line extends StatelessWidget {
-  final String word;
-  Line({required this.word});
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Expanded(
-            child: Center(
-          child: Text(
-            word,
-            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-          ),
-        )),
-        Expanded(child: Container()),
-        Expanded(
-          child: TextField(
-            keyboardType: TextInputType.number,
-            decoration: InputDecoration(
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(20.0),
-              ),
-            ),
-          ),
-        ),
-      ],
     );
   }
 }
